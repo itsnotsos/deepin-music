@@ -20,10 +20,10 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y cmake pkg-config qtbase5-dev qt5-qmake qttools5-dev-tools qtmultimedia5-dev \
-                            libtag1-dev libicu-dev libgsettings-qt-dev libdbusextended-qt5-dev libkf5codecs-dev \
-                            libavutil-dev libavcodec-dev libavformat-dev libdtkcore-dev libdtkgui-dev \
-                            libdframeworkdbus-dev libudisks2-dev libvlc-dev libvlccore-dev dtk5-dev \
-                            rpm build-essential
+                            libqt5svg5-dev libtag1-dev libicu-dev libgsettings-qt-dev libdbusextended-qt5-dev \
+                            libkf5codecs-dev libavutil-dev libavcodec-dev libavformat-dev libdtkcore-dev \
+                            libdtkgui-dev libdframeworkdbus-dev libudisks2-qt5-dev libvlc-dev libvlccore-dev \
+                            libdtkwidget-dev rpm build-essential
 
     - name: Build deepin-music
       run: |
@@ -50,8 +50,9 @@ jobs:
 
         BuildRequires: cmake, gcc, make, qt5-qmake, qtbase5-dev, libtag1-dev, libavutil-dev, \
                        libavcodec-dev, libavformat-dev, libvlc-dev, libvlccore-dev, \
-                       libdtkcore-dev, libdtkgui-dev, libdframeworkdbus-dev, libudisks2-dev, \
-                       libkf5codecs-dev, libicu-dev, libgsettings-qt-dev, libdbusextended-qt5-dev
+                       libdtkcore-dev, libdtkgui-dev, libdframeworkdbus-dev, libudisks2-qt5-dev, \
+                       libkf5codecs-dev, libicu-dev, libgsettings-qt-dev, libdbusextended-qt5-dev, \
+                       libqt5svg5-dev, qttools5-dev-tools, qtmultimedia5-dev, libdtkwidget-dev
         Requires: qt5, libtag1, libavutil, libavcodec, libavformat, libvlc, libvlccore, \
                   dtkcore, dtkgui, dframeworkdbus, udisks2, kf5codecs, libicu, gsettings-qt, \
                   dbus
@@ -76,7 +77,7 @@ jobs:
         /usr/bin/deepin-music
 
         %changelog
-        * Thu Oct 14 2024 burhanverse <burhanverse@proton.me> 1.0
+        * Thu Oct 14 2024 Your Name <youremail@example.com> 1.0-1
         - Initial RPM release for Deepin Music
         EOF
 
