@@ -10,16 +10,20 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Using Ubuntu as the build environment
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install build tools
+    - name: Install build tools and dependencies
       run: |
         sudo apt update
-        sudo apt install -y rpm build-essential cmake
+        sudo apt install -y cmake pkg-config qtbase5-dev qt5-qmake qttools5-dev-tools qtmultimedia5-dev \
+                            libtag1-dev libicu-dev libgsettings-qt-dev libdbusextended-qt5-dev libkf5codecs-dev \
+                            libavutil-dev libavcodec-dev libavformat-dev libdtkcore-dev libdtkgui-dev \
+                            libdframeworkdbus-dev libudisks2-dev libvlc-dev libvlccore-dev dtk5-dev \
+                            rpm build-essential
 
     - name: Build deepin-music
       run: |
@@ -44,8 +48,13 @@ jobs:
         License: GPL
         Source: deepin-music.tar.gz
 
-        BuildRequires: cmake, gcc, make, qt5-qmake, qt5-devel, libtag-devel, ffmpeg-devel, vlc-devel
-        Requires: qt5, libtag, ffmpeg, vlc
+        BuildRequires: cmake, gcc, make, qt5-qmake, qtbase5-dev, libtag1-dev, libavutil-dev, \
+                       libavcodec-dev, libavformat-dev, libvlc-dev, libvlccore-dev, \
+                       libdtkcore-dev, libdtkgui-dev, libdframeworkdbus-dev, libudisks2-dev, \
+                       libkf5codecs-dev, libicu-dev, libgsettings-qt-dev, libdbusextended-qt5-dev
+        Requires: qt5, libtag1, libavutil, libavcodec, libavformat, libvlc, libvlccore, \
+                  dtkcore, dtkgui, dframeworkdbus, udisks2, kf5codecs, libicu, gsettings-qt, \
+                  dbus
 
         %description
         Deepin Music Player is an awesome music player built by the Deepin project.
@@ -67,7 +76,7 @@ jobs:
         /usr/bin/deepin-music
 
         %changelog
-        * Thu Oct 14 2024 Your Name <youremail@example.com> 1.0-1
+        * Thu Oct 14 2024 burhanverse <burhanverse@proton.me> 1.0
         - Initial RPM release for Deepin Music
         EOF
 
